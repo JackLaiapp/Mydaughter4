@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4C47331E7E7DA4005909DF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C47321E7E7DA4005909DF /* DetailViewController.swift */; };
+		1F4C47351E7E83D8005909DF /* mainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C47341E7E83D8005909DF /* mainTableViewCell.swift */; };
 		1FB7842C1E7A6AE900131203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7842B1E7A6AE900131203 /* AppDelegate.swift */; };
 		1FB7842E1E7A6AE900131203 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7842D1E7A6AE900131203 /* ViewController.swift */; };
 		1FB784311E7A6AE900131203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7842F1E7A6AE900131203 /* Main.storyboard */; };
 		1FB784331E7A6AE900131203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FB784321E7A6AE900131203 /* Assets.xcassets */; };
 		1FB784361E7A6AE900131203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB784341E7A6AE900131203 /* LaunchScreen.storyboard */; };
 		1FB7843E1E7A78FB00131203 /* MydaughterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7843D1E7A78FB00131203 /* MydaughterViewController.swift */; };
+		1FE5601D1E7ED9A4005598A4 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5601C1E7ED9A4005598A4 /* ImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F4C47321E7E7DA4005909DF /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1F4C47341E7E83D8005909DF /* mainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainTableViewCell.swift; sourceTree = "<group>"; };
 		1FB784281E7A6AE900131203 /* Mydaughter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaughter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB7842B1E7A6AE900131203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FB7842D1E7A6AE900131203 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		1FB784351E7A6AE900131203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FB784371E7A6AE900131203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FB7843D1E7A78FB00131203 /* MydaughterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MydaughterViewController.swift; sourceTree = "<group>"; };
+		1FE5601C1E7ED9A4005598A4 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +65,10 @@
 				1FB7842B1E7A6AE900131203 /* AppDelegate.swift */,
 				1FB7842D1E7A6AE900131203 /* ViewController.swift */,
 				1FB7842F1E7A6AE900131203 /* Main.storyboard */,
+				1FE5601C1E7ED9A4005598A4 /* ImageTableViewCell.swift */,
 				1FB7843D1E7A78FB00131203 /* MydaughterViewController.swift */,
+				1F4C47341E7E83D8005909DF /* mainTableViewCell.swift */,
+				1F4C47321E7E7DA4005909DF /* DetailViewController.swift */,
 				1FB784321E7A6AE900131203 /* Assets.xcassets */,
 				1FB784341E7A6AE900131203 /* LaunchScreen.storyboard */,
 				1FB784371E7A6AE900131203 /* Info.plist */,
@@ -142,7 +151,10 @@
 			files = (
 				1FB7843E1E7A78FB00131203 /* MydaughterViewController.swift in Sources */,
 				1FB7842E1E7A6AE900131203 /* ViewController.swift in Sources */,
+				1F4C47351E7E83D8005909DF /* mainTableViewCell.swift in Sources */,
+				1FE5601D1E7ED9A4005598A4 /* ImageTableViewCell.swift in Sources */,
 				1FB7842C1E7A6AE900131203 /* AppDelegate.swift in Sources */,
+				1F4C47331E7E7DA4005909DF /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +316,7 @@
 				1FB7843C1E7A6AE900131203 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
