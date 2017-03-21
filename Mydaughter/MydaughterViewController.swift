@@ -15,7 +15,7 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var HeaderImageView: UIImageView!
 
     var mainData = [["label":"0-6個月"],["label":"7-12個月"]]
-    //var myImages = [#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")]
+
     var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
     var imageArray = [#imageLiteral(resourceName: "peter"),#imageLiteral(resourceName: "DSC_5508"),#imageLiteral(resourceName: "DSC_5536"),#imageLiteral(resourceName: "DSC_5528")]
 
@@ -43,19 +43,6 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
             button.isEnabled = false
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
             cell.mainScrollView.addSubview(button)
-/*
-            let imageView = UIImageView()
-            imageView.image = myImages[i]
-
-            let xPosition = self.view.frame.width * CGFloat(i)
-            imageView.frame = CGRect(x: xPosition, y: 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
-
-            imageView.layer.borderColor = UIColor.white.cgColor
-            imageView.layer.borderWidth = 4
-            
-            cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
-            cell.mainScrollView	.addSubview(imageView)
-*/
         }
 
 
