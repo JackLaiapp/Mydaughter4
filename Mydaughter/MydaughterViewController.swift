@@ -8,42 +8,54 @@
 
 import UIKit
 
-struct Info{
-    
-    var label:String = ""
-    var image:[String] = []
-}
 
 class MydaughterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
-    
     @IBOutlet var imageTableView: UITableView!
     @IBOutlet weak var HeaderImageView: UIImageView!
-    var mainData = [
-        Info(label : "１歲", image : ["01.JPG", "02.JPG", "03.JPG", "04.JPG", "05.JPG", "06.JPG", "07.JPG", "08.JPG", "09.JPG", "10.JPG", "11.JPG","12.JPG"]),
-        ]
-    var imageArray = [#imageLiteral(resourceName: "DSC_5508"),#imageLiteral(resourceName: "DSC_5536"),#imageLiteral(resourceName: "DSC_5528")]
+
+    var mainData = [["label":"0-6個月"],["label":"7-12個月"]]
+    //var myImages = [#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")]
+    var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
+    var imageArray = [#imageLiteral(resourceName: "peter"),#imageLiteral(resourceName: "DSC_5508"),#imageLiteral(resourceName: "DSC_5536"),#imageLiteral(resourceName: "DSC_5528")]
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainData.count
     }
 
+    // 設定  cell  的內容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! mainTableViewCell
-
+        // Configure the cell...
+        let dic = mainData[indexPath.row]
+        cell.mainLabel.text = dic["label"]
         
-        for i in 0...11 {
-            
-            cell.mainLabel.text = mainData[indexPath.row].label
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: mainData[indexPath.row].image[i])
-            cell.contentMode = .scaleAspectFit
+        // 在ScrollView 產生 button
+        	for i in 0..<myImages[indexPath.row].count {
+
+            let button = UIButton()
+            button.setImage(myImages[indexPath.row][i], for: .normal)
             let xPosition = self.view.frame.width * CGFloat(i)
-            imageView.frame = CGRect(x: xPosition, y : 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
+            button.frame = CGRect(x: xPosition, y: 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
+            button.tag = i
+            button.layer.borderColor = UIColor.white.cgColor
+            button.layer.borderWidth = 4
+            button.isEnabled = false
+            cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
+            cell.mainScrollView.addSubview(button)
+/*
+            let imageView = UIImageView()
+            imageView.image = myImages[i]
+
+            let xPosition = self.view.frame.width * CGFloat(i)
+            imageView.frame = CGRect(x: xPosition, y: 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
+
+            imageView.layer.borderColor = UIColor.white.cgColor
+            imageView.layer.borderWidth = 4
             
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
-            cell.mainScrollView.addSubview(imageView)
-
+            cell.mainScrollView	.addSubview(imageView)
+*/
         }
 
 

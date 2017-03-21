@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var DetailDic = Info()
+    //var DetailDic = Info()
     
     override func viewDidLoad() {
         super.viewDidLoad()
