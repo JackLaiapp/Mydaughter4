@@ -9,16 +9,20 @@
 import UIKit
 
 
-class MydaughterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class MydaughterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet var imageTableView: UITableView!
     @IBOutlet weak var HeaderImageView: UIImageView!
 
     var mainData = [["label":"0-6個月"],["label":"7-12個月"]]
+    
+    //var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
+    var myImages = [[#imageLiteral(resourceName: "ios9-photos-app-icon-for-wrap")],[#imageLiteral(resourceName: "ios9-photos-app-icon-for-wrap")]]
 
-    var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
     var imageArray = [#imageLiteral(resourceName: "peter"),#imageLiteral(resourceName: "DSC_5508"),#imageLiteral(resourceName: "DSC_5536"),#imageLiteral(resourceName: "DSC_5528")]
-
+    let imagePicker = UIImagePickerController()
+    let button = UIButton()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainData.count
     }
@@ -31,30 +35,46 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
         cell.mainLabel.text = dic["label"]
         
         // 在ScrollView 產生 button
-        	for i in 0..<myImages[indexPath.row].count {
+        for i in 0..<myImages[indexPath.row].count {
+            //let button = UIButton()
 
-            let button = UIButton()
             button.setImage(myImages[indexPath.row][i], for: .normal)
             let xPosition = self.view.frame.width * CGFloat(i)
             button.frame = CGRect(x: xPosition, y: 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
             button.tag = i
             button.layer.borderColor = UIColor.white.cgColor
             button.layer.borderWidth = 4
-            button.isEnabled = false
+            
+            button.addTarget(self, action: #selector(MydaughterViewController.ImageTap(tap:)), for: .touchUpInside)
+            
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
             cell.mainScrollView.addSubview(button)
         }
 
-
         return cell
         
     }
-
     
-override func viewDidLoad() {
+    func ImageTap(tap:UITapGestureRecognizer){
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let picker = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            button.setImage(picker, for: .normal)
+            
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
+        imagePicker.delegate = self
+        
     // Do any additional setup after loading the view.
         // 設置要輪播的圖片陣列
         self.HeaderImageView.animationImages = imageArray
