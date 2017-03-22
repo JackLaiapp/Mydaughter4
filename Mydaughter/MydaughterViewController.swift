@@ -16,12 +16,12 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
 
     var mainData = [["label":"0-6個月"],["label":"7-12個月"]]
     
-    //var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
-    var myImages = [[#imageLiteral(resourceName: "ios9-photos-app-icon-for-wrap")],[#imageLiteral(resourceName: "ios9-photos-app-icon-for-wrap")]]
+    var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
+
 
     var imageArray = [#imageLiteral(resourceName: "peter"),#imageLiteral(resourceName: "DSC_5508"),#imageLiteral(resourceName: "DSC_5536"),#imageLiteral(resourceName: "DSC_5528")]
+    //建立一個ImagePickerController
     let imagePicker = UIImagePickerController()
-    let button = UIButton()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainData.count
@@ -36,38 +36,47 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
         
         // 在ScrollView 產生 button
         for i in 0..<myImages[indexPath.row].count {
-            //let button = UIButton()
-
+            
+            let button = UIButton()
             button.setImage(myImages[indexPath.row][i], for: .normal)
+            
             let xPosition = self.view.frame.width * CGFloat(i)
             button.frame = CGRect(x: xPosition, y: 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
+            
             button.tag = i
+            //設定button邊界顏色和大小
             button.layer.borderColor = UIColor.white.cgColor
             button.layer.borderWidth = 4
             
-            button.addTarget(self, action: #selector(MydaughterViewController.ImageTap(tap:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(MydaughterViewController.choosePicture), for: .touchUpInside)
             
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
+            //是否顯示水平的滑動條
+            cell.mainScrollView.showsHorizontalScrollIndicator = false
+            //解決botton無法實現scrollview滑動
+            cell.mainScrollView.panGestureRecognizer.delaysTouchesBegan = true
+            
             cell.mainScrollView.addSubview(button)
-        }
+            
+      }
 
         return cell
         
     }
     
-    func ImageTap(tap:UITapGestureRecognizer){
+    func choosePicture(){
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         
         present(imagePicker, animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let picker = info[UIImagePickerControllerOriginalImage] as? UIImage
-        {
-            button.setImage(picker, for: .normal)
-            
-        }
+
+        let picker:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //button.setImage(picker, for: .normal)
+
         dismiss(animated: true, completion: nil)
     }
     
