@@ -56,8 +56,8 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
             let button = UIButton()
             button.setImage(UIImage(named: dic.image[i]), for: .normal)
             
-            let xPosition = self.view.frame.width * CGFloat(i)
-            button.frame = CGRect(x: xPosition, y: 0, width : (cell.mainScrollView.frame.width), height: cell.mainScrollView.frame.height)
+            let xPosition = cell.mainScrollView.frame.width * CGFloat(i)
+            button.frame = CGRect(x: xPosition, y: 0, width : (cell.mainScrollView.frame.width - 10), height: cell.mainScrollView.frame.height)
             
             button.tag = i
             //設定button邊界顏色和大小
@@ -95,9 +95,8 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
     super.viewDidLoad()
-
         
-    // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
         // 設置要輪播的圖片陣列
         self.HeaderImageView.animationImages = imageArray
         // 輪播一次的總秒數

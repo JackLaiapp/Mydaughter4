@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="205" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tbd-on-rsW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="205" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tbd-on-rsW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aKh-Qe-pxP">
@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="314" width="375" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nAv-DR-isC" id="cqQ-Xp-knE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlf-be-HHR">
@@ -43,14 +43,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jub-Fl-I4w">
-                                                    <rect key="frame" x="10" y="29" width="355" height="175"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jub-Fl-I4w">
+                                                    <rect key="frame" x="10" y="29" width="365" height="176"/>
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="qlf-be-HHR" firstAttribute="top" secondItem="cqQ-Xp-knE" secondAttribute="topMargin" id="5Rr-dp-1vA"/>
                                                 <constraint firstItem="qlf-be-HHR" firstAttribute="leading" secondItem="cqQ-Xp-knE" secondAttribute="leadingMargin" id="A87-36-R06"/>
-                                                <constraint firstAttribute="trailing" secondItem="jub-Fl-I4w" secondAttribute="trailing" constant="10" id="JMW-V1-rqU"/>
+                                                <constraint firstAttribute="trailing" secondItem="jub-Fl-I4w" secondAttribute="trailing" id="JMW-V1-rqU"/>
                                                 <constraint firstAttribute="bottom" secondItem="jub-Fl-I4w" secondAttribute="bottom" id="PqC-pw-jza"/>
                                                 <constraint firstItem="jub-Fl-I4w" firstAttribute="leading" secondItem="cqQ-Xp-knE" secondAttribute="leading" constant="10" id="VnR-e1-cvh"/>
                                                 <constraint firstItem="jub-Fl-I4w" firstAttribute="top" secondItem="qlf-be-HHR" secondAttribute="bottom" id="lYk-7I-o4F"/>
