@@ -8,48 +8,65 @@
 
 import UIKit
 
-
-class MydaughterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class Info{
+    
+    var title = ""
+    var image = [""]
+    var location = ""
+    
+    init(title: String, image:[String], location: String){
+        self.title = title
+        self.image = image
+        self.location = location
+        
+    }
+}
+class MydaughterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate{
 
     @IBOutlet var imageTableView: UITableView!
     @IBOutlet weak var HeaderImageView: UIImageView!
-
-    var mainData = [["label":"0-6個月"],["label":"7-12個月"]]
-    
-    var myImages = [[#imageLiteral(resourceName: "1"),#imageLiteral(resourceName: "2"),#imageLiteral(resourceName: "3"),#imageLiteral(resourceName: "4"),#imageLiteral(resourceName: "5"),#imageLiteral(resourceName: "6")],[#imageLiteral(resourceName: "7"),#imageLiteral(resourceName: "8"),#imageLiteral(resourceName: "9"),#imageLiteral(resourceName: "10"),#imageLiteral(resourceName: "11"),#imageLiteral(resourceName: "12")]]
+    var daughterdata:[Info] = [
+        Info(title : "1個月", image : ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], location: ""),
+        Info(title : "2個月", image : ["6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"], location: ""),
+        Info(title : "3個月", image : ["11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg"],location: ""),
+        Info(title : "4個月", image : ["16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg"],location: ""),
+        Info(title : "5個月", image : ["21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg"],location: ""),
+        Info(title : "6個月", image : ["26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg"],location: ""),
+        Info(title : "7個月", image : ["31.jpg", "32.jpg", "33.jpg", "34.jpg", "35.jpg"],location: ""),
+        Info(title : "8個月", image : ["36.jpg", "37.jpg", "38.jpg", "39.jpg", "40.jpg"],location: "")]
 
 
     var imageArray = [#imageLiteral(resourceName: "peter"),#imageLiteral(resourceName: "DSC_5508"),#imageLiteral(resourceName: "DSC_5536"),#imageLiteral(resourceName: "DSC_5528")]
-    //建立一個ImagePickerController
-    let imagePicker = UIImagePickerController()
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainData.count
+        return daughterdata.count
     }
 
     // 設定  cell  的內容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! mainTableViewCell
         // Configure the cell...
-        let dic = mainData[indexPath.row]
-        cell.mainLabel.text = dic["label"]
+        let dic = daughterdata[indexPath.row]
+        cell.mainLabel.text = dic.title
         
         // 在ScrollView 產生 button
-        for i in 0..<myImages[indexPath.row].count {
-            
+        for i in 0..<dic.image.count {
+
             let button = UIButton()
-            button.setImage(myImages[indexPath.row][i], for: .normal)
+            button.setImage(UIImage(named: dic.image[i]), for: .normal)
             
             let xPosition = self.view.frame.width * CGFloat(i)
-            button.frame = CGRect(x: xPosition, y: 0, width : cell.mainScrollView.frame.width, height: cell.mainScrollView.frame.height)
+            button.frame = CGRect(x: xPosition, y: 0, width : (cell.mainScrollView.frame.width), height: cell.mainScrollView.frame.height)
             
             button.tag = i
             //設定button邊界顏色和大小
-            button.layer.borderColor = UIColor.white.cgColor
-            button.layer.borderWidth = 4
-            
-            button.addTarget(self, action: #selector(MydaughterViewController.choosePicture), for: .touchUpInside)
-            
+
+            button.layer.masksToBounds = true
+            button.layer.cornerRadius = 10
+
+            button.addTarget(self, action: #selector(goDetailController(sender:)), for: .touchUpInside)
+            button.setTitle(dic.title, for: .normal)
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
             //是否顯示水平的滑動條
             cell.mainScrollView.showsHorizontalScrollIndicator = false
@@ -64,29 +81,21 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
-    func choosePicture(){
-        // 設置拍照完後 可以編輯 會多一個編輯照片的步驟
-        imagePicker.allowsEditing = false
-        // 設定影像來源 這裡設定為圖庫
-        imagePicker.sourceType = .photoLibrary
-        // 顯示圖庫功能
-        present(imagePicker, animated: true, completion: nil)
+    func goDetailController(sender: UIButton){
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+        
+        controller?.titleLabel = sender.currentTitle
+        controller?.tag = sender.tag
+        print(sender.tag)
+        controller?.image = sender.currentImage
+        
+        self.present(controller!, animated: true, completion: nil)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // 取得原始拍照的照片 UIImage
-        let picker:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-         // 再來就是對圖片的處理 img 是一個 UIImage
-        //button.setImage(picker, for: .normal)
-        //移除Picker
-        dismiss(animated: true, completion: nil)
-    }
-    
+
     override func viewDidLoad() {
     super.viewDidLoad()
-        // 設置 delegate
-        imagePicker.delegate = self
+
         
     // Do any additional setup after loading the view.
         // 設置要輪播的圖片陣列
