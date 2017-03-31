@@ -11,6 +11,7 @@ import MapKit
 
 class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate {
 
+    var info:Info!
     var titleLabel:String!
     var tag:Int!
     var image:UIImage!

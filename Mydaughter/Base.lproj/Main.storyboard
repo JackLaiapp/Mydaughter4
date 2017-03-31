@@ -43,8 +43,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jub-Fl-I4w">
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="jub-Fl-I4w">
                                                     <rect key="frame" x="10" y="29" width="365" height="176"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="nAv-DR-isC" id="8NM-nG-q1k"/>
+                                                    </connections>
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
@@ -59,6 +62,7 @@
                                         <connections>
                                             <outlet property="mainLabel" destination="qlf-be-HHR" id="MzN-I9-ZHG"/>
                                             <outlet property="mainScrollView" destination="jub-Fl-I4w" id="duS-pB-StA"/>
+                                            <segue destination="EZ7-yB-Ca8" kind="show" id="W6o-Dz-57F"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

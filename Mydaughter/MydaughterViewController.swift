@@ -64,7 +64,7 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
 
             button.layer.masksToBounds = true
             button.layer.cornerRadius = 10
-
+            button.layer.backgroundColor = UIColor.white.cgColor
             button.addTarget(self, action: #selector(goDetailController(sender:)), for: .touchUpInside)
             button.setTitle(dic.title, for: .normal)
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
@@ -90,12 +90,22 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
         controller?.image = sender.currentImage
         
         self.present(controller!, animated: true, completion: nil)
+ 
     }
-
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailetailViewController" {
+            if let indexPath = imageTableView.indexPathForSelectedRow {
+                let destinationController = segue.destination as! DetailViewController
+                destinationController.info = daughterdata[indexPath.row]
+            }
+        }
+    }
+    
     override func viewDidLoad() {
     super.viewDidLoad()
-        
+        imageTableView.delegate = self
+    
         // Do any additional setup after loading the view.
         // 設置要輪播的圖片陣列
         self.HeaderImageView.animationImages = imageArray
