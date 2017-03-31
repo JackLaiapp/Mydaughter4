@@ -46,10 +46,12 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
     // 設定  cell  的內容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! mainTableViewCell
+
+        
         // Configure the cell...
         let dic = daughterdata[indexPath.row]
         cell.mainLabel.text = dic.title
-        
+
         // 在ScrollView 產生 button
         for i in 0..<dic.image.count {
 
@@ -60,11 +62,16 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
             button.frame = CGRect(x: xPosition, y: 0, width : (cell.mainScrollView.frame.width - 10), height: cell.mainScrollView.frame.height)
             
             button.tag = i
-            //設定button邊界顏色和大小
 
+            //需要再設置一個屬性，這個標籤的圓角效果才能出來
             button.layer.masksToBounds = true
+            //製作圓角,若是將數值提高，則圓角的效果將會更趨顯著
             button.layer.cornerRadius = 10
+            //背景顏色
             button.layer.backgroundColor = UIColor.white.cgColor
+            //按鈕是否可以使用
+            button.isEnabled = true
+            //按鈕按下後的動作
             button.addTarget(self, action: #selector(goDetailController(sender:)), for: .touchUpInside)
             button.setTitle(dic.title, for: .normal)
             cell.mainScrollView.contentSize.width = cell.mainScrollView.frame.width * CGFloat(i + 1)
@@ -72,8 +79,8 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
             cell.mainScrollView.showsHorizontalScrollIndicator = false
             //解決botton無法實現scrollview滑動
             cell.mainScrollView.panGestureRecognizer.delaysTouchesBegan = true
-            
             cell.mainScrollView.addSubview(button)
+            
             
       }
 
@@ -93,14 +100,6 @@ class MydaughterViewController: UIViewController, UITableViewDataSource, UITable
  
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailetailViewController" {
-            if let indexPath = imageTableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as! DetailViewController
-                destinationController.info = daughterdata[indexPath.row]
-            }
-        }
-    }
     
     override func viewDidLoad() {
     super.viewDidLoad()
